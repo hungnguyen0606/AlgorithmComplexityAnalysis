@@ -1,0 +1,269 @@
+\documentclass[a4paper 14pt]{article}
+\usepackage[utf8]{vietnam}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[document]{ragged2e}
+%for use of addmargin environment
+\usepackage{scrextend}
+\usepackage{listings}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage[margin = 1.5in]{geometry}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\usepackage{lipsum}       % for sample text
+\usepackage{changepage}   % for the adjustwidth environment
+
+\begin{document}
+	\input{titlepage}
+	\pagebreak
+	\thispagestyle{empty}
+	\tableofcontents
+	\pagebreak
+	\pagenumbering{arabic}
+
+	\section{Tổng quan}
+		\subsection{Phát biểu bài toán}
+			Bài toán được phát biểu như sau: 
+			\begin{quotation}
+				Liệu tất cả các bài toán mà lời giải của nó có thể kiểm tra được trong thời gian đa thức có thể giải trong thời gian đa thức được hay không?
+			\end{quotation}
+
+		\subsection{Sơ lược về nguồn gốc bài toán}
+		Bài toán được đề cập tới lần đầu trong một bức thư do Kurt Godel gửi tới John Von Neumann vào năm 1956. Trong đó Godel đặt vấn đề liệu các bài toán NP có thể giải trong thời gian tuyến tính hay bậc hai được không. Tuy vậy bài toán này được phát biểu một cách chính xác trong bài báo của Stephen Cook năm 1971, tên "The complexity of theorem proving procedures". Tuy bài toán bài toán này còn khá "non trẻ" nếu đặt lên bàn cân so với nhiều bài toán nổi tiếng khác, nhưng nó được xem là một trong những vấn đề quan trọng nhất lĩnh vực khoa học máy tính và toán học, và còn được xem như một cầu nối giữa hai lĩnh vực này. Chính bởi tính quan trọng của nó mà việc toán học Clay (Clay Mathematics Institute) đã lựa chọn nó là một trong 7 bài toán triệu đô.
+		
+		\subsection{Tầm quan trọng của bài toán}
+		Để có thể hiểu rõ được tầm quan trọng của việc giải bài toán này ta sẽ thử nhìn từ 2 góc độ sau.\\
+		Điều gì sẽ xảy ra nếu:
+		\begin{itemize}
+			\item P = NP
+			\item P $\neq$ NP
+		\end{itemize} 
+			
+			\subsubsection{P = NP}
+				Nếu P = NP và, quan trọng hơn nữa, ta tìm được một cách giải hiệu quả cho một bài toán thuộc lớp NP-Complete. Khi đó, có thể nói, thế giới hoàn toàn thay đổi bởi khi ấy các ta có thể giải được các bài toán tối ưu một cách hiệu quả. Khi đó
+				\begin{itemize}
+					\item Ta có thể tạo ra các hệ thống lập lịch hoàn hảo để tiết kiệm tối đa nguồn lực, nâng cao hiệu suất, giảm thiểu lãng phí trong các bài toán di chuyển, xếp lịch làm việc.
+					\item Ta có thể giải quyết nhiều vấn đề nan giải trong y học và chữa trị được nhiều bệnh nan y.
+					\item Nâng cao khả năng học tập, học ít nhất nhưng đạt hiệu quả cao nhất.
+					\item Và ta cũng có thể giải quyết hầu hết mọi bí ẩn mà khoa học chưa tìm ra đáp án.
+				\end{itemize}  
+				Tuy vậy, bên cạnh những lợi ích mang lại, thì nhân loại cũng phải đối mặt với nhiều vấn đề mà nó mang lại, đặc biệt là vấn đề an ninh. Bởi nhiều hệ thống an ninh được thiết lập dựa trên nền tảng của những bài toán khó, không chỉ là trong trường hợp xấu nhất mà còn phải đảm bảo các bài toán nền tảng này khó giải được trong các trường hợp trung bình. Nói rõ hơn, khi đó:
+				\begin{itemize}
+					\item Các hệ thống sử dụng mã công khai, public key, sẽ sụp đổ.
+					\item Các hệ thống tín nhiệm (trusted third party, trusted servers) sẽ trở nên mất an toàn.
+				\end{itemize}
+			\subsubsection{P $\neq$ NP}
+				Khi  P $\neq$ NP, chúng ta sẽ phải chấp nhận thế giới đầy những vấn đề không giải quyết được. Tuy vậy, con người cũng sẽ định hướng được cho việc giải quyết vấn đề, giả sử, nếu xác định được bài toán thuộc dạng NP. Khi đó, thay vì tập trung nguồn lực giải quyết trường hợp chung cho bài toán, ta sẽ tập trung giải quyết từng trường hợp đơn lẻ, cụ thể. Đó là việc vô cùng tích cực bởi trong thực tế, với lượng thông tin và các điều kiện thu thập được, thì bài toán dễ hơn rất nhiều, và cùng với việc năng lực tính toán của máy tính ngày càng cao thì ta cũng có thể giải được các bài toán khó với một quy mô khá lớn phù hợp với thực tế.\\
+		\subsection{Khảo sát}
+			Sau đây là 1 khảo sát thực hiện bởi  William Gasarch\footnotemark trong cộng đồng các nhà khoa học trong lĩnh vực Computer Science gồm nhiều tên tuổi lớn, trong đó có Donald Knuth. \cite{Poll}
+			\footnotetext{Dept. of Computer Science, University of Maryland, College Park}
+			\begin{table}[H]
+				\begin{tabular}{|c|c|c|c|}
+					\hline
+					Year & $P \neq NP$ & $P = NP$ & Others opinions\\ \hline
+					2002 & 61 (61\%) & 9 (9\%) & 30 (30\%)\\ \hline
+					2012 & 126 (83\%) & 12 (9\%) & 13 (8\%)\\ \hline
+				\end{tabular}
+			\end{table}	
+			Dựa vào bảng khảo sát trên ta thấy đa số trong cộng đồng khoa học cho rằng $P \neq NP$. Chính điều này cũng dẫn đến việc có rất nhiều nghiên cứu tập trung chứng minh $P \neq NP$, tuy vậy tất cả đều thất bại.\\
+			Bên cạnh đó, bài khảo sát này cũng đề xuất các kĩ thuật, nền tảng lý thuyết có thể được dùng để giải bài toán \textbf{P vs NP}.
+			\begin{enumerate}
+				\item Combinatorics - Complexity.
+				\item Logic.
+				\item Deep Math.
+				\item Misc (miscellaneous) sử dụng nhiều kĩ thuật khác nhau kết hợp.
+				\item Các kĩ thuật mới.
+				\item Các kĩ thuật đã biết.
+			\end{enumerate}
+			Ngoài ra trong bài khảo sát này còn đề cập tới nhiều vấn đề khác như thời gian dự kiến giải được và các nhận xét của các giáo sư trong lĩnh vực khoa học máy tính (chủ yếu) về vấn đề này.
+	\section{Định nghĩa}
+		\subsection{Turing machine}
+			Do các lớp bài toán được định nghĩa dựa trên nền tảng của Turing machine nên ta sẽ đề cập về khái niệm này đầu tiên.\\
+			Có khá nhiều loại Turing machine được đề cập tới bao gồm:\\
+			\begin{itemize}
+				\item Deterministic Turing machine
+				\item Non-deterministic Turing machine
+				\item Probabilistic Turing machine
+				\item Quantum Turing machine
+				\item $\hdots$
+			\end{itemize}
+			Tuy vậy, trong giới hạn bài viết ta chỉ đề cập cụ thể tới 2 loại máy đầu tiên, do chúng có liên quan mật thiết đến các lớp bài toán phía sau.
+			\subsubsection{Deterministic Turing machine}
+				Một Turing machine \footnote{Được đề xuất bởi Alan Turing năm 1936} được biểu diễn bởi 1 nhóm $M = \langle \Sigma, \Gamma, b, Q, \delta, q_0, F \rangle$\\
+				Trong đó:\\
+				\begin{tabular}{l p{4in}}
+					$Q$& - tập hữu hạn, không rỗng gồm các trạng thái.\\
+					$\Gamma$& - tập hữu hạn, không rỗng các kí tự trên đĩa(tape).\\
+					$b \in \Gamma$& - kí tự trống (blank symbol), là kí tự duy nhất được xuất hiện vô số lần trên tape.\\
+					$\Sigma \subseteq \Gamma \backslash \{b\}$& - tập hợp các kí tự input.\\
+					$\delta: (Q \backslash F) \times \Gamma \to Q \times \Gamma \times \{L, R\} $& - là một hàm cục bộ (partial function) được gọi là một hàm chuyển (transition), L là dịch trái, R là dịch phải.\\
+					$q_{0} \in Q$& - là trạng thái ban đầu.\\
+					$F\subseteq Q$& - là tập trạng thái kết thúc hoặc chấp nhật (accepting states). Nội dung 1 tape được xem là chấp nhận bởi turing machine M khi và chỉ khi nó kết thúc với một trạng thái thuộc F. Thông thường $F = \{q_{accept}, q_{reject}\}$.\\
+				\end{tabular}  
+				Một cấu hình (configuration) của M được biểu diễn bởi 1 chuỗi $xqy$, trong đó $x, y \in \Gamma^{*}$, và được hiểu là M đang ở trạng thái $q$ với $xy$ trên đĩa (tape), và đầu đọc đang đọc kí tự đầu tiên của y.\\
+				Một bước tính toán (computation - từ đây người viết sẽ sử dụng từ tiếng Anh gốc để bảo toàn nghĩa và làm cho bài viết xúc tích) được hiểu là một dãy các cấu hình $C_0, C_1, C_2, \hdots$, trong đó $C_0 = q_0w$, hoặc $C_0 = q_0b$ nếu $w$ là chuỗi rỗng. Bên cạnh đó $C_i \overset{M}{\to} C_{i+1}$. Khi đó, số bước tính toán bằng số cấu hình trừ 1.\\
+				$\Sigma^*$ là tập các chuỗi tạo bởi các kí tự trong $\Sigma$\\
+				Một ngôn ngữ (Language) ứng với tập kí tự $\Sigma$, gọi là $L$, và $L\subset \Sigma^*$.\\
+				Một chuỗi $w \in L$ được gọi là chấp nhận bởi máy Turing (M), nếu ứng với chuỗi đó thì máy Turing sẽ dừng trong hữu hạn bước ở một trạng thái hợp lệ thuộc $F$.\\
+				Gọi $L(M) = \{w, | w \in L,\text{M chấp nhận w} \}$.\\
+				Gọi $t_M(w)$ là số bước máy Turing M chạy (số cấu hình trừ 1) ứng với input w.\\
+				Khi đó $T_M(n) = Max\{t_M(w) | w \in \Sigma^n, n \in N\}$, n là độ dài của input. 
+			\subsubsection{Non-deterministic Turing machine}
+				Ta có thể định nghĩa Non-deterministic Turing machine (NTM) tương tự với Deterministic Turing machine (DTM). Điểm khác biệt duy nhất nằm ở $\delta$.\\
+				Nếu ở DTM, thì $\delta$ là một hàm ánh xạ từ một cấu hình của máy Turing sang đúng 1 cấu hình khác hoặc không thể ánh xạ (theo định nghĩa của partial function). thì $\delta$ trong NTM thể hiện một quan hệ giữa 2 trạng thái.\\
+				$\delta: (Q\backslash F \times \Gamma) \times (Q \times \Gamma \times \{L,R\})$\\
+				Nói một cách đơn giản, từ một cấu hình hiện thời của NTM, ta có thể đi tới nhiều cấu hình khác, miễn chúng thỏa quan hệ $\delta$.\\
+				Khi đó một chuỗi $w$ được gọi là chấp nhận bởi một NTM khi và chỉ khi tồn tại một đường đi (có thể có nhiều đường đi do tính chất của NTM) kết thúc với một trạng thái thuộc F.\\
+				Nếu xem mỗi cấu hình trong dãy cấu hình ứng với một input sinh ra bởi Turing machine là một đỉnh của đồ thị, thì đồ thị ứng với DTM là một đường đi đơn, còn ứng với một NTM là một cây mà mỗi nhánh (hoặc đường đi) không nhất thiết là hữu hạn.\\
+				Dựa vào đó ta có thể đưa ra nhận xét, nếu chuỗi w được chấp nhận bởi NTM, thì phải tồn tại một nhánh hữu hạn nút, mà nút lá mang trạng thái hợp lệ. Khi đó, ta định nghĩa $t_M(w)$ là độ dài của nhánh ngắn nhất chấp nhận w. Các định nghĩa khác là tương tự như với DTM.\\ 
+		\subsection{Phép rút gọn}
+			Trong giới hạn bài viết, ta sẽ đề cập chủ yếu tới 2 phép rút gọn sau:
+			\begin{enumerate}
+				\item Polynomial time reduction
+				\item Many to one reduction
+			\end{enumerate}
+			\subsubsection{Polynomial time reduction}
+				Kí hiệu: $A \leq_P^T B$ (hoặc ngắn gọn $\leq_P$)\\
+				Hiểu đơn giản, ta nói bài $X \leq_P Y$ có nghĩa là ta có thể đưa việc giải bài toán X thành việc giải Y. Nói chính xác, thì bài toán X được rút gọn trong thời gian đa thức thành bài toán Y khi bất kì input nào của X đều được giải bằng cách:\\
+				\begin{itemize}
+					\item Số lần tính toán (computation - chiếu theo định nghĩa Turing machine) là đa thức theo kích thước đầu vào.
+					\item Số lần gọi tới lời giải bài toán Y (hay oracle của Y) là đa thức theo kích thước đầu vào.
+				\end{itemize}
+				Nếu như bỏ đi "đa thức" trong 2 điều kiện trên thì ta sẽ được khái niệm của Turing reduction.\\
+				Mục đích của phép rút gọn nhằm giúp phân loại bài toán dựa vào độ khó của các bài toán đã biết, dựa vào các tính chất sau:
+				\begin{enumerate}
+					\item Biết $X \leq_P Y$, và Y có thể giải được trong thời gian đa thức thì X cũng có thể giải được trong thời gian đa thức.
+					\item Biết $X \leq_P Y$, và X không thể giải được trong thời gian đa thức thì Y cũng không thể giải được trong thời gian đa thức.
+				\end{enumerate}
+				
+				\textbf{Ví dụ:}
+				Xét 2 bài toán:
+				\begin{enumerate}
+					\item\label{checkham} Cho đồ thị G = (V, E), hãy kiểm tra xem đồ thị có chu trình Hamilton hay không.
+					\item\label{findham} Cho đồ thị G = (V, E), hãy tìm ra một chu trình Hamilton.
+				\end{enumerate}
+				Đặt bài toán \ref{checkham} là A, bài toán \ref{findham} là B. Dễ dàng nhận ra $A \leq_P B$. Để kiểm chứng, ta xem xét đoạn mã sau:
+				\lstinputlisting[language = Python, frame = single, numberstyle=\tiny, numbers=left]{Sources/Preduction.py}
+				Đoạn mã nguồn thể hiện phép rút gọn từ bài toán \ref{checkham} về bài toán \ref{findham}. Trong đó:
+				\begin{enumerate} 
+					\item Số phép tính toán là đa thức theo kích thước đầu vào $O(1)$ (chỉ bao gồm 1 cặp lệnh if, else).
+					\item Số lần gọi tới hàm tìm kiếm chu trình hamilton cũng là đa thức theo kích thước đầu vào $O(1)$ (gọi 1 lần duy nhất ở phần kiểm tra điều kiện trong if).
+				\end{enumerate}
+			\subsubsection{Many to one reduction}
+				Kí hiệu $A \leq_m B$\\
+				Gọi A, B là ngôn ngữ trên tập kí tự tương ứng $\Sigma$ và $\Gamma$ và $f: \Sigma^* \to \Gamma^*$ là hàm tính được toàn phần. Với mỗi chuỗi $w \in \Sigma^*$ , thì $w \in A \Leftrightarrow f(w) \in B$, nghĩa là $A = f^{-1}(B)$.\\
+				Bên cạnh đó so với các cách rút gọn khác thì many-to-one reduction ràng buộc về thời gian cũng như không gian khá chặt. Ví dụ, xét bài toán A, B, thuật toán T để giải B và phép rút gọn many-to-one từ A về B. Khi đó thời gian để giải A bằng tổng thời gian của phép rút gọn và thời gian chạy của thuật toán T. Không gian giải A bằng max của không gian giải B và không gian cần thiết cho phép rút gọn.\\
+				\textbf{Ví dụ:}\\
+				Xét 2 bài toán:
+				\begin{enumerate}
+					\item\label{factor} Cho một số nguyên không âm N, kiểm tra xem N có thể phân tích thành p*q, với $1 < p,q < N$.
+					\item\label{prime} Cho một số nguyên không âm N, kiểm tra xem N có phải là hợp số hay không?
+				\end{enumerate}
+				Gọi F(N) = N là phép biến đổi từ input bài toán \ref{factor} sang input bài toán \ref{prime}. Rõ ràng F(N) là hàm toàn phần, khả tính trên tập số nguyên, và thực hiện được trong thời gian đa thức. Khi đó $N = pq$ với $1 < p,q < N$, khi và chỉ khi F(N) là hợp số.
+		\subsection{Lớp bài toán P}
+			Nói đơn giản lớp P bao gồm tất cả các bài toán mà tồn tại một thuật toán có thể đưa ra lời giải của nó trong thời gian đa thức.\\
+			Trong đó P có nghĩa: Polynomial time.\\
+			Bên cạnh đó, nếu dựa trên định nghĩa về Deterministic Turing machine ở trên, ta có thể biểu diễn lại như sau.
+			$P = \{L| L \in L(M), \forall w \in L, T_M(|w|) = w^k + h; k,h \in N\}$\\		
+			
+			\textbf{Ví dụ:}
+			\begin{description}
+				\item[Bài toán kiểm tra số nguyên tố] Cho một số nguyên không âm, hãy kiểm tra đây có phải là số nguyên tố hay không. Trên thực tế, cho tới trước khi thuật toán AKS ra đời, thì các nhà khoa học vẫn chưa chứng minh được bài toán này thuộc lớp P. Tuy vậy, thuật toán AKS mang ý nghĩa về mặt lý thuyết nhiều hơn (chứng minh rằng bài toán kiểm tra số nguyên tố thuộc lớp P), nhưng trong thực tế thường ít được sử dụng bởi độ phức tạp lớn $\overset{~}{O(log^{12}(n))}$ (với giải thuật nguyên mẫu), và sau này được cải tiến xuống còn $\overset{~}{O(log^{7.5}(n))}$. Trong đó $g(x) = \overset{~}{O(f(x))}$ là viết tắt của $g(x) = O(f(x)log^k(f(x))$. Từ đó ta cũng nhận thấy rằng, các bài toán thuộc lớp P, trong thực tế chưa hẳn đã dễ "giải" hơn các bài toán thuộc lớp NP. Ở đây, ta xem việc "giải" bài toán, là đưa ra một lời giải chấp nhận được. Tuy vậy, vẫn có những bài toán thuộc lớp NP mà ta có thể đề ra các thuật toán có độ phức tạp trung bình rất nhỏ, thậm chí là hằng số.
+			\end{description}
+		\subsection{Lớp bài toán NP}
+			Lớp NP bao gồm tất cả các bài toán quyết định mà lời giải của nó có thể kiểm tra được trong thơi gian đa thức.\\
+			Trong đó NP có nghĩa: Non-deterministic Polynomial time.\\
+			Ta có thể đưa ra định nghĩa tương tự như P, chỉ khác duy nhất mọi khái niệm ta dùng đều tương ứng với NTM thay vì DTM.\\
+			Tuy nhiên, ta cũng có thể đưa ra một định nghĩa khác không dựa trên NTM như sau:\\
+			Xét ngôn ngữ $L \subset \Sigma^{*}$.\\
+			$L \subset NP$ khi và chỉ khi tồn tại quan hệ nhị phân $R \subset \Sigma^{*} \times \Sigma^{*}$, và:
+			\begin{itemize}
+				\item $\forall w \in \Sigma^{*}, x \in L \equiv \exists y \in \Sigma^{*}, |y| \in O(|w|^k) (w,y) \in R)$
+				\item Ngôn ngữ $L_R = \{x\#y| (x,y) \in R\}$ trên bộ kí tự $\Sigma \cup \{\#\}$ được xác định bởi DTM trong thời gian đa thức.
+			\end{itemize}
+			Khi đó, y được gọi là certificate của x, và máy Turing xác định $L_R$ là verifier của L.\\
+			\vspace{0.5cm}
+			\textbf{Ví dụ:}
+			Ta sẽ phát biểu 1 bài toán thuộc lớp NP theo định nghĩa trên.\\
+			\begin{adjustwidth}{1cm}{}
+				Xét nhóm $Z_N$ và phần tử  $g \in Z_N$. \\
+				$H = \{x | \exists y \in Z_N,~ g^y \equiv x (mod N)\}$\\
+				Xét quan hệ:\\
+				$R = \{x\#y \in (Z_N\times Z_N)| g^y \equiv x (mod N)\}$\\
+			
+			\end{adjustwidth}
+			\textbf{Định nghĩa:} $log_g(x) = y$ trên nhóm $Z_N$, nếu  $\exists y \in Z_N,~ g^y \equiv x (mod N)$.\\
+			\textbf{Đặt vấn đề:} Cho $Z_N,~g,~x$, hãy kiểm tra xem $log_g(x)$ có tồn tại hay không.\\
+			\textbf{Nhận xét:} rõ ràng việc $log_g(x)$ tồn tại hay không tương đương với x có thuộc H hay không. Bên cạnh đó nếu xem y là certificate của x, và R là verifier của H, thì ta có chứng minh được $H \in NP$\\
+			
+			\vspace{0.5cm}
+			
+			Một số bài toán nổi tiếng thuộc lớp NP:\\ 
+			\begin{description}
+				\item[Bài toán tổng con] cho một dãy số, hay tìm một dãy con có tổng bằng 0. Ta có thể kiểm tra kết quả bài toán bằng một vòng lặp nhưng để tìm ra được kết quả thì vô cùng khó khăn ngoại trừ cách duyệt hết tất cả, $2^N$, tập con.
+				\item[Bài toán Boolean Satisfiability] \label{EX: NP-C} cho một tập các biểu thức Boolean định nghĩa trên tập biến cho trước, liệu có tồn tại cách gán giá trị TRUE hay FALSE cho từng biến để tất cả các biểu thức đều mang giá trị TRUE hay không? Đây là một bài toán vô cùng quan trọng bởi nó được xem là bài toán thuộc lớp các bài toán khó nhất trong tất cả các bài toán NP. Điều này có nghĩa là nếu giải được bài toán này ta có thể giải được tất cả các bài trong lớp NP sử dụng thuật toán của nó. Hơn thế nữa, tất cả các bài toán trong lớp NP đều có thể rút gọn về bài toán này trong thời gian đa thức. Điều này mang ý nghĩa vô cùng lớn bởi nếu có thể tìm ra thuật toán trong thời gian đa thức cho bài toán này thì ta cũng có thể giải được tất cả các bài toán NP trong thời gian đa thức.
+			\end{description}
+		\subsection{Lớp bài toán NP-Hard}
+			Lớp NP-Hard bao gồm tất cả các bài toán mà "có độ khó tối thiểu bằng các bài toán khó nhất trong lớp NP", nhưng không nhất thiết nằm trong lớp NP.\\
+			Nói cách khác thì một bài toán A thuộc lớp NP-hard khi và chỉ khi với mỗi bài toán thuộc lớp NP, luôn tồn phép rút gọn trong thời gian đa thức về bài toán A.\\
+			Phát biểu hình thức:
+			\begin{addmargin}{0.5in}
+				\begin{tabular}{l p{4in}}
+				NPH& lớp các bài toán NP-hard.\\
+				NP& lớp các bài toán NP.\\
+				$\leq^{P}:$& phép rút gọn trong thời gian đa thức. (ta sẽ đề cập tới định nghĩa của phép tính này sau)\\
+				\textbf{Định nghĩa}&$A \in NPH \Leftrightarrow \forall B \in NP,~ B \leq^{P} A$
+				\end{tabular}
+			\end{addmargin}
+			\textbf{Ví dụ:}
+			\begin{description}
+				\item[Bài toán Knapsack]  Cho một túi sách với trọng lượng tối đa W. N đồ vật với trọng lượng $w_{i}$ và giá trị $v_{i}$. Hãy tìm tập con các đồ vật để bỏ vào túi sao cho tổng giá trị là lớn nhất có thể và tổng trọng lượng không vượt quá W.
+			\end{description}
+		\subsection{Lớp bài toán NP-Complete}
+			Có nhiều cách để định nghĩa NP-Complete.\\
+			Một trong số đó dựa trên định nghĩa về NP-Hard và NP.\\
+			\begin{addmargin}{0.5in}
+				\begin{tabular}{l l}
+				NPC & lớp các bài toán NP-complete.\\
+				\textbf{Định nghĩa} & $A \in NPC \Leftrightarrow A \in NPH \cap NP$\\
+				hoặc & $A \in NPC \Leftrightarrow A \in NP\&~\forall B \in NP,~~B \leq^{P}_{m}A$\\
+				\end{tabular}
+			\end{addmargin}
+			\textbf{Ví dụ:}
+			\begin{description}
+				\item[Bài toán Knapsack - phiên bản bài toán quyết đinh]  Cho một túi sách với trọng lượng tối đa W. N đồ vật với trọng lượng $w_{i}$ và giá trị $v_{i}$. Hỏi có thể bỏ các đồ vật vào túi sao cho tổng giá trị tối thiểu là V và trọng lượng không vượt quá W.
+				\item[Bài toán Boolean Satisfiability] bài toán này phát biểu tương tự như ở ví dụ phần \ref{EX: NP-C}.
+				\item[Bài toán Clique Cover] Xét một đồ thị tổng quát, hỏi có cách nào để phân các đỉnh của đồ thị trên thành k đồ thị con đầy đủ hay không.
+			\end{description}
+			Ví dụ về phép rút gọn một bài toán về bài toán thuộc lớp NP-Complete:\\
+			Xét bài toán kiểm tra sắc số đồ thị (kiểm tra xem đồ thị có thể tô được bằng nhiều nhất k màu sao cho 2 đỉnh kề nhau tô màu khác nhau). Ta có thể biến đổi bài toán này về bài toán Clique Cover thông qua phép biến đổi trong thời gian đa thức như sau.\\
+			\begin{enumerate}
+				\item Xây dựng đồ thị bù của đồ thị cần kiểm tra sắc số. (Đồ thị G' gọi là bù của G nếu như $V_{G'} = V_{G}$ và 2 đỉnh u, v kề nhau trong G' khi và chỉ khi chúng không kề nhau trong G)
+				\item Giải bài toán Clique Cover trên G'.
+				\item Nếu câu trả lời là Yes, tức có thể phân G' thành k cliques thì ta cũng có thể tô đồ thị G bằng k màu, với các đỉnh trong cùng 1 clique của G' được tô cùng một màu. Do mỗi cặp đỉnh trong một clique của G' đôi một kề nhau, nên cũng có nghĩa là chúng đôi một không kề nhau trong G nên ta có thể tô cùng 1 màu.
+			\end{enumerate}
+	\section{Mối quan hệ giữa các lớp bài toán}
+	\begin{figure}[H]
+	\includegraphics[scale = 0.4]{Venn.png}
+	\end{figure}
+	
+	Dựa vào biểu trên, ta có nhận xét: nếu tồn tại một bài toán thuộc lớp NPC mà cũng thuộc lớp P thì khi đó NP = P. Điều này cũng dễ dàng chứng minh được dựa vào định nghĩa của lớp NPC. Đây cũng là một cách tiếp cận với bài toán \textbf{P vs NP}.
+	
+	\section{Tạm kết}
+	Dù có giải được bài toán P vs NP hay không thì những ý nghĩa mà nó mang lại cho thế giới là vô cùng lớn. Bởi trong quá trình tìm hiểu, đề xuất, và xây dựng phương pháp để giải quyết bài toán này thì thế giới đã làm giàu thêm kho tàng kiến thức của mình đồng thời giúp cho chúng ta có cái nhìn sâu sắc hơn trong lĩnh vực phân tích độ phức tạp thuật toán.
+	
+	\begin{thebibliography}{9}
+		\bibitem{PvsNP}
+		Stephen Cook, \emph{P vs NP problem}, April 2000, Manuscript prepared for the Clay Mathematics Institute for the Millennium Prize Problems (revised November, 2000).
+		\bibitem{PolynomialTimeReduction}
+		Kevin Wayne, \emph{Polynomial-time Reductions}, Lecture of Princeton University.
+		\bibitem{History}
+		Lance Fortnow, \emph{The Status of the P Versus NP Problem}, Communications of the ACM, Vol. 52 No. 9, Pages 78-86.
+		\bibitem{Poll}
+		Lane A. Hemaspaandra, \emph{SIGACT News Complexity Theory Column 74}
+	\end{thebibliography}
+\end{document}

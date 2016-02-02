@@ -1,0 +1,36 @@
+\documentclass[14pt]{extarticle}
+\usepackage[utf8]{vietnam}
+\usepackage{float}
+\usepackage{graphicx}
+
+\usepackage{geometry}
+\geometry{legalpaper, portrait, margin=1in}
+
+\graphicspath{{Images/}}
+\begin{document}
+	\input{titlepage}
+	\pagebreak
+\begin{flushleft}
+	\section{Câu hỏi tìm hiểu}
+	\subsection{Câu 1}
+		\underline{\textbf{Câu hỏi:}} Thuật toán chính xác khác thuật toán xấp xỉ như thế nào? Tại sao lại cần đến thuật toán xấp xỉ?\\
+		\underline{\textbf{Trả lời:}} Thuật toán chính xác đưa ra lời giải chính xác tuyệt đối tương ứng với input, còn thuật toán xấp xỉ đưa ra lời giải gần đúng, chấp nhận được với input. Với nhiều bài toán thì việc tìm được lời giải chính xác là vô cùng khó hoặc không thể tìm được. Bên cạnh đó các thuật toán chính xác đôi khi chạy khá chậm. Ngược lại thuật toán xấp xỉ thường cài đặt đơn giản và cho kết quả tốt trong thời gian chấp nhận được. \\
+	\subsection{Câu 2}
+		\underline{\textbf{Câu hỏi:}} Tại sao lại cần đến chiến lược thiết kế thuật toán (algorithm design technique/strategy)?\\
+		\underline{\textbf{Trả lời:}} Chiến lược thiết kế thuật toán tốt cho phép ta tiếp cận với nhiều bài toán theo hướng phù hợp nhằm đưa ra lời giải đủ tốt để giải quyết bài toán, giảm thời gian "mò mẫm". \\
+	\subsection{Câu 3}
+		\underline{\textbf{Câu hỏi:}} Tính tổng quát (generality) có ưu điểm và khuyết điểm gì cần quan tâm khi xây dựng thuật toán?\\
+		\underline{\textbf{Trả lời:}} \textbf{Ưu điểm} - giúp ta giải quyết được nhiều bài toán cùng dạng, do thuật toán mang tính tổng quát cao có thể dễ dàng biên đổi, chỉnh sửa, do đó mang tính tái sử dụng cao. \textbf{Khuyết điểm} - thường để thiết kế thuật toán giải một bài toán tổng quát sẽ khó hơn (thậm chí bất khả thi) so với việc tìm thuật toán cho từng trường hợp cụ thể. Ngoài ra, ta khó tận dụng những đặc trưng riêng của bài toán để nâng hiệu suất thuật toán.  
+	\subsection{Câu 4}
+		\underline{\textbf{Câu hỏi:}} Tính cố định (stable – stability) của các thuật toán sắp xếp có ý nghĩa gì?\\
+		\underline{\textbf{Trả lời:}} Tính cố định của thuật toán sắp xếp thể hiện ở việc các phần tử có giá trị "bằng nhau" được bảo toàn thứ tự sau khi sắp xếp.\\
+	\subsection{Câu 5}
+		\underline{\textbf{Câu hỏi:}} Tại sao các bài toán tổ hợp (combinatorial problem) được coi là những bài toán khó nhất trong tính toán? \\
+		\underline{\textbf{Trả lời:}} Lớp bài toán này được xem là khó nhất trong tính toán do: \\
+		\begin{enumerate}
+			\item Số lượng tổ hợp tăng cực nhanh khi ta tăng kích thước input.
+			\item Chưa có thuật toán để giải cho đa số bài toán thuộc lớp này. Nhiều nhà nghiên cứu cho rằng không tồn tại thuật toán như vậy nhưng điều này chưa được chứng minh hay phản chứng.
+			
+		\end{enumerate}
+\end{flushleft}
+\end{document}

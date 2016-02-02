@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[utf8]{vietnam}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{ \lceil}{ \rceil}
+
+%----------------------------------------
+\usepackage[margin = 1in]{geometry}
+\usepackage{listings}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\usepackage{multirow}
+\usepackage{float}
+%---------------------------------------
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+\usepackage{pgfplots}
+
+\usepgfplotslibrary{external}
+
+\tikzexternalize
+\input{Styles/CodeStyle.tex}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+	\large{\textbf{ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH}}
+	\large{\textbf{TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}}
+	\large{\textbf{KHOA CÔNG NGHỆ THÔNG TIN}}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[scale = 0.5]{logo}}
+	\end{figure}
+
+	\Large{\textbf{Nhập môn phân tích độ phức tạp thuật toán}}
+	\Large{\textbf{BT03: Đếm với yếu tố ngẫu nhiên - Insertion Sort}}
+
+\end{center}
+	\vfill
+\begin{flushright}
+	
+	\begin{tabular}{l l l}
+		GVLT: &Thầy Trần Đan Thư\\
+		&\\
+		GVTH: &Thầy Nguyễn Đức Thân\\
+		&Thầy Trương Toàn Thịnh\\
+		&Thầy Nguyễn Vinh Tiệp\\
+		&Thầy Nguyễn Sơn Hoàng Quốc\\
+		&\\
+		Sv: &Nguyễn Phan Mạnh Hùng & 1312727\\
+	\end{tabular}
+\end{flushright}
+
+\vfill
+\end{titlepage}
+\pagebreak
+
+%------------------------------------------------------------
+\pagenumbering{arabic}
+\section{Quy ước}
+$C(n):$ số phép so sánh.\\
+$A(n):$ số phép gán.\\
+\section{Mô tả bài toán}
+\begin{tabular}{l l}
+\textbf{Input:} &dãy số tự nhiên độ dài N.\\
+\textbf{Output:} &dãy số được sắp xếp theo thứ tự giảm dần.\\
+\textbf{Yêu cầu:} &sử dụng thuật toán Insertion Sort.\\
+\end{tabular}
+\section{Mô tả dữ liệu}
+\begin{tabular}{l l}
+	\textbf{Best case} &dãy số giảm (ngặt) dần.\\
+	\textbf{Worst case} &dãy số tăng (ngặt) dần.\\
+	\textbf{Average} &dãy ngẫu nhiên.\\
+\end{tabular}
+\section{Nhận xét - Đánh giá}
+\subsection{Độ phức tạp theo tính toán lý thuyết}
+\begin{tabular}{l l}
+	\textbf{Best case} & $O(n)$\\
+	\textbf{Worst case} & $O(n^2)$\\
+	\textbf{Average case} & $O(n^2)$\\
+\end{tabular}
+\subsection{Thực nghiệm}
+\begin{tabular}{l l l}
+	\multirow{2}{*}{Best case} & $C(n)$ & $\approx~3n$ \\
+	& $A(n)$ & $\approx~6n$\\
+	\multirow{2}{*}{Worst case} & $C(n)$ &  $\approx~n^2$ \\
+	& $A(n)$ &  $\approx~n^2$\\
+	\multirow{2}{*}{Average case} & $C(n)$ & $\approx~\frac{n^2}{2}$ \\
+	& $A(n)$ & $\approx~\frac{n^2}{2}$\\
+\end{tabular}
+\subsection{Nhận xét}
+Ta thấy thuật toán chạy rất tốt (thời gian tuyến tính) trong trường hợp tốt nhất.\\
+Trong trường hợp trung bình và xấu nhất, thì thời gian chạy tương đối giống nhau ($n^2$).\\
+Dựa vào dữ liệu thực nghiệm trên, ta nhận thấy hằng số tính toán của thuật toán Insertion Sort là khá nhỏ (mà thực tế là Insertion sort được đánh giá là một trong những thuật toán nhanh nhất với mảng có kích thước nhỏ). Dựa vào điều này, ta có thể cải tiến thuật toán Quick sort bằng cách đặt 1 ngưỡng cố định, và khi dãy cần sắp xếp có kích thước nhỏ hơn ngưỡng này thì ta sẽ dùng Insertion Sort thay thế.
+\end{document}

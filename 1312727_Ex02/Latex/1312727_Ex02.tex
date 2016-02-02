@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[utf8]{vietnam}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{ \lceil}{ \rceil}
+
+%----------------------------------------
+\usepackage{listings}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\usepackage{multirow}
+\usepackage{float}
+%---------------------------------------
+
+
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+\usepackage{pgfplots}
+
+\usepgfplotslibrary{external}
+
+\tikzexternalize
+\input{Styles/CodeStyle.tex}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+	\large{\textbf{ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH}}
+	\large{\textbf{TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}}
+	\large{\textbf{KHOA CÔNG NGHỆ THÔNG TIN}}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[scale = 0.5]{logo}}
+	\end{figure}
+
+	\Large{\textbf{Nhập môn phân tích độ phức tạp thuật toán}}
+	\Large{\textbf{BT01: Phép gán và phép so sánh}}
+
+\end{center}
+	\vfill
+\begin{flushright}
+	
+	\begin{tabular}{l l l}
+		GVLT: &Thầy Trần Đan Thư\\
+		&\\
+		GVTH: &Thầy Nguyễn Đức Thân\\
+		&Thầy Trương Toàn Thịnh\\
+		&Thầy Nguyễn Vinh Tiệp\\
+		&Thầy Nguyễn Sơn Hoàng Quốc\\
+		&\\
+		Sv: &Nguyễn Phan Mạnh Hùng & 1312727\\
+	\end{tabular}
+\end{flushright}
+
+\vfill
+\end{titlepage}
+\pagebreak
+\thispagestyle{empty}
+\tableofcontents{}
+\pagebreak
+%------------------------------------------------------------
+\pagenumbering{arabic}
+
+
+\section{Quy ước}
+	\begin{flushleft}
+		$A(n)$: số lượng phép gán.\\
+		$C(n)$: số lượng phép so sánh.
+	\end{flushleft}
+
+
+\section{Mã nguồn}
+\lstinputlisting[style = C++]{Sources/Sum.cpp}
+
+
+\section{Nhận xét - Dự đoán độ phức tạp thuật toán}
+	\begin{figure}[H]
+		\includegraphics[scale = 0.5]{Calculate}
+	\end{figure}
+	\begin{flushleft}
+		Ta nhận thấy vòng lặp trong cùng chỉ thực hiện khi $j \leq i*i$ hay:
+		\begin{equation}\label{eq:Eq1} 
+			n - i \leq i*i
+		\end{equation}
+		Giải bất phương \ref{eq:Eq2} với ẩn $i \geq 0$, tham số $n$ ta được:
+		\begin{equation}\label{eq:Eq2}
+			i \geq  \left\lceil\frac{-1 +\sqrt{4n + 1}}{2}\right\rceil = \alpha
+		\end{equation}
+		Ta tính được:
+		\begin{equation}\label{eq:Eq3}
+			C(n) = n + \alpha + \Sigma_{i = \alpha}^{n}\left(i^2+i-n+2\right)
+		\end{equation}
+		Mà $\forall n \geq 2,~alpha \leq \frac{n}{2}$, nên:\\
+		\begin{gather}
+			\begin{align*}
+			C(n) & \geq n + \alpha + \Sigma_{i = \left\lceil \frac{n}{2} \right\rceil + 1}^{n}\left(i^2+i-n+2\right)\\
+			& \geq n + \Sigma_{i = \left\lceil \frac{n}{2} \right\rceil + 1}^{n}\left( \frac{n}{2} \right)^2 + \frac{n}{2} - n \\
+			& \geq n + \left( \frac{n}{2} - 3 \right) \times \left[ \left( \frac{n}{2} \right)^2  - n \right] = \frac{n^3}{8} - \frac{5n^2}{4} + 4\times n\\
+			\Rightarrow 8 \times C(n) &\geq n\times \left(  n^3 - 10n^2 + 32 \right) \geq n^3 
+			\end{align*}
+		\end{gather}
+		Do đó: 
+		\begin{equation}\label{eq:Eq4}
+			C(n) \in \Omega(n^3)
+		\end{equation}
+		Bên cạnh đó, $\forall n \geq 2$
+		\begin{gather}
+			\begin{align*}
+				C(n) &\leq n + \Sigma_{i = \left\lceil \frac{n}{2} \right\rceil + 1}^{n}\left(n^2 + n - n\right) \\
+				&\leq n + \left(\frac{n}{2}\right) \times n^2 = n + \frac{n^3}{2} \leq 10n^3
+			\end{align*}
+		\end{gather}	
+		nên 
+		\begin{equation}\label{eq:Eq5}
+			C(n) \in O(n^3)
+		\end{equation}
+		Từ \ref{eq:Eq4} và \ref{eq:Eq5}, ta được\\
+		\begin{equation}\label{eq:Eq6}
+			C(n) \in \Theta(n^3)
+		\end{equation}
+		
+		Tuy vậy, ta có thể tính chính xác số phép so sánh bằng cách khai triển \ref{eq:Eq3}, ta được:
+		\begin{equation}
+			C(n) = 2n^3 + n\times(16+6\alpha) - 2\alpha^3 -4\alpha + 12
+		\end{equation}
+		Với công thức trên ta dễ dàng chứng minh được $C(n) \in \Theta(n^3)$ mà không thông qua chứng minh bất đẳng thức ở trên.\\
+		Đối với phép gán, ta chứng minh tương tự phép so sánh sẽ cho ra độ phức tạp như trên.
+	\end{flushleft}
+\end{document}

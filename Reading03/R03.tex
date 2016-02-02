@@ -1,0 +1,73 @@
+\documentclass[a4paper 14pt]{extarticle}
+\usepackage[utf8]{vietnam}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\begin{document}
+	\input{titlepage}
+	\pagebreak
+	
+	\begin{flushleft}
+		\section{Câu hỏi tìm hiểu}
+		\subsection{Câu 1}
+		\underline{\textbf{Câu hỏi:}} Hãy nêu chiến lược tổng quát để phân tích độ phức tạp thời gian của thuật toán không đệ qui.\\
+		\underline{\textbf{Trả lời:}} Chiến lược tổng quát để phân thích độ phức tạp thời gian của thuật toán không đệ quy gồm 5 bước:
+		\begin{enumerate}
+			\item Quyết định tham số (hay những tham số) nào sẽ xác định kích thước đầu vào của bài toán.
+			\item Xác định thao tác cơ bản của thuật toán.
+			\item Kiểm tra nếu số lần thực hiện thao tác cơ bản chi phụ thuộc vào kích thước đầu vào. Nếu nó còn phụ thuộc vào các yêu tố khác thì ta phải xét riêng các trường hợp tốt nhất, xấu nhất, và trung bình của thuật toán.
+			\item Xác lập hệ thức biểu diễn tổng số lần thực hiện thao tác cơ bản.
+			\item Sử dụng cái công thức, luật biến đổi tổng để xác định được công thức cuối cùng cho số lần thực hiện phép tính cơ bản hoặc tối thiểu là tìm được bậc tăng trưởng của nó.
+		\end{enumerate}
+		\subsection{Câu 2}
+		\underline{\textbf{Câu hỏi:}} Hãy nêu chiến lược tổng quát để phân tích độ phức tạp thời gian của thuật toán đệ qui.\\
+		\underline{\textbf{Trả lời:}} Chiến lược tổng quát để phân thích độ phức tạp thời gian của thuật toán đệ quy gồm 5 bước: \\
+		\begin{enumerate}
+			\item Quyết định tham số (hay những tham số) nào sẽ xác định kích thước đầu vào của bài toán.
+			\item Xác định thao tác cơ bản của thuật toán.
+			\item Kiểm tra xem nếu số lần thực hiện của thao tác cơ bản khác nhau trên các bộ dữ liệu khác nhau cùng kích thước đầu vào. Nếu có, cần phải tính toán độ phức tạp trong trường hợp tốt nhất, xấu nhất, và trung bình riêng biệt.
+			\item Xác lập hệ thức đệ quy, và điều kiện cơ bản phù hợp, cho số lần thao tác cơ bản được thực hiện.
+			\item Giải hệ thức, hoặc ít nhất là xác định bậc tăng trưởng của nghiệm cần tìm.
+		\end{enumerate}
+		
+		\subsection{Câu 3}
+		\underline{\textbf{Câu hỏi:}} Hãy nêu chiến lược tổng quát để phân tích độ phức tạp thời gian của thuật toán bằng phương pháp thực nghiệm.\\
+		\underline{\textbf{Trả lời:}}  \\
+		\begin{enumerate}
+			\item Nắm được mục đích của thí nghiệm.
+			\item Quyết định không gian metric để đo lường và đơn vị đo lường (số lượng thao tác so với đơn vị thời gian)
+			\item Xác định đặc trưng của bộ dữ liệu đầu vào (miền giá trị, kích thước, ...)
+			\item Chuẩn bị chương trình viết thuật toán dành cho  thí nghiệm.
+			\item Phát sinh bộ dữ liệu đầu vào.
+			\item Chạy thuật toán trên bộ dữ liệu đó và ghi nhận dữ liệu (kết quả) quan sát được.
+			\item Phân tích kết quả nhận được.
+		\end{enumerate}
+		\subsection{Câu 4}
+		\underline{\textbf{Câu hỏi:}} Hãy nêu các động lực để thực hiện phân tích độ phức tạp bằng phương pháp thực nghiệm.\\
+		\underline{\textbf{Trả lời:}} Các động lực, mục đích để thực hiện phân tích độ phức tạp bằng phương pháp thực nghiệm bao gồm:\\
+		\begin{itemize}
+			\item Kiểm tra tính chính xác của công thức tính toán dựa trên lý thuyết.
+			\item So sánh độ hiệu quả của nhiều thuật toán giải cùng một bài toán, hoặc giữa các cách viết (implementation) khác nhau của cùng một thuật toán.
+			\item Dự đoán efficiency class, độ tăng trưởng của thuật toán.
+			\item Kiểm tra độ hiệu quả của một thể hiện thuật toán trên một máy nhất định.
+		\end{itemize}
+		Ngoài ra, còn có nhiều mục đích khác, tùy thuộc vào câu hỏi mà người thí nghiệm quan tâm.
+		\subsection{Câu 5}
+		\underline{\textbf{Câu hỏi:}} Hãy nêu một số kĩ thuật để thực hiện phân tích độ phức tạp bằng phương pháp thực nghiệm. \\
+		\underline{\textbf{Trả lời:}}  \\
+		\begin{itemize}
+			\item Thêm các biến đếm để theo dõi số lần thực hiện của các thao tác cơ bản.
+			\item Sử dụng bộ đếm thời gian của hệ thống để xác định thời gian chạy của thuật toán với bộ dữ liệu tương ứng.
+			\item Các phương pháp biểu diễn data nhận được từ thực nghiệm như vẽ biểu đồ (dạng scatter) hay sử dụng bảng để dự đoán efficiency class.
+			\item Sử dụng các công cụ sinh số giả ngẫu nhiên, thuật toán sinh số giả ngẫu nhiên (linear congruential method) để sinh bộ dữ liệu.
+		\end{itemize}
+	
+		
+	\end{flushleft}
+\end{document}
